@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:islamic_treasure/core/config/app_assets.dart';
 import 'package:islamic_treasure/core/config/app_colors.dart';
 import 'package:islamic_treasure/core/config/app_routes.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:islamic_treasure/core/constants/app_keys.dart';
 import 'package:islamic_treasure/features/auth/presentation/manager/login_cubit.dart';
 import 'package:islamic_treasure/features/auth/presentation/widgets/auth_button.dart';
 import 'package:islamic_treasure/features/auth/presentation/widgets/auth_text_field.dart';
@@ -61,7 +63,7 @@ class _SignInViewState extends State<SignInView> {
                         ),
                         const SizedBox(height: 24),
                         Text(
-                          'تسجيل الدخول',
+                          AppKeys.signIn.tr(),
                           style: GoogleFonts.cairo(
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
@@ -70,7 +72,7 @@ class _SignInViewState extends State<SignInView> {
                         ),
 
                         Text(
-                          'أهلاً بك مرة أخرى في كنوز إسلامية',
+                          AppKeys.welcomeBack.tr(),
                           style: GoogleFonts.cairo(
                             fontSize: 14,
                             color: AppColors.mutedGreen,
@@ -78,7 +80,7 @@ class _SignInViewState extends State<SignInView> {
                         ),
                         const SizedBox(height: 32),
                         Text(
-                          'اختر صفتك للدخول',
+                          AppKeys.chooseUserType.tr(),
                           style: GoogleFonts.cairo(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -100,15 +102,15 @@ class _SignInViewState extends State<SignInView> {
                         const SizedBox(height: 48),
 
                         AuthTextField(
-                          label: 'البريد الإلكتروني',
-                          hintText: 'example@mail.com',
+                          label: AppKeys.email.tr(),
+                          hintText: AppKeys.emailHint.tr(),
                           controller: _emailController,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'يرجى إدخال البريد الإلكتروني';
+                              return AppKeys.emailRequired.tr();
                             }
                             if (!RegExp(r'^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
-                              return 'يرجى إدخال بريد إلكتروني صحيح';
+                              return AppKeys.emailInvalid.tr();
                             }
                             return null;
                           },
@@ -117,8 +119,8 @@ class _SignInViewState extends State<SignInView> {
                         BlocBuilder<LoginCubit, LoginState>(
                           builder: (context, state) {
                             return AuthTextField(
-                              label: 'كلمة المرور',
-                              hintText: '********',
+                              label: AppKeys.password.tr(),
+                              hintText: AppKeys.passwordHint.tr(),
                               isPassword: true,
                               obscureText: context.read<LoginCubit>().isPasswordHidden,
                               controller: _passwordController,
@@ -127,10 +129,10 @@ class _SignInViewState extends State<SignInView> {
                               },
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'يرجى إدخال كلمة المرور';
+                                  return AppKeys.passwordRequired.tr();
                                 }
                                 if (value.length < 6) {
-                                  return 'كلمة المرور يجب أن تكون 6 أحرف على الأقل';
+                                  return AppKeys.passwordTooShort.tr();
                                 }
                                 return null;
                               },

@@ -8,6 +8,8 @@ import 'package:islamic_treasure/core/config/app_routes.dart';
 import 'package:islamic_treasure/core/services/cache_service.dart';
 import 'package:islamic_treasure/features/onboarding/domain/entities/onboarding_model.dart';
 import 'package:islamic_treasure/features/onboarding/presentation/manager/onboarding_cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:islamic_treasure/core/constants/app_keys.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingBody extends StatefulWidget {
@@ -23,18 +25,18 @@ class _OnboardingBodyState extends State<OnboardingBody> {
   final List<OnboardingModel> _pages = [
     OnboardingModel(
       image: AppAssets.onboarding1,
-      title: 'أهلاً بك في كنوز إسلامية',
-      description: 'اكتشف جمال العلوم الإسلامية من خلال دروسنا التفاعلية والممتعة المصممة خصيصاً لك ولنموك الروحي.',
+      title: AppKeys.onboardingTitle1.tr(),
+      description: AppKeys.onboardingDesc1.tr(),
     ),
     OnboardingModel(
       image: AppAssets.onboarding2,
-      title: 'تعلم تفاعلي وممتع',
-      description: 'استمتع بتجربة تعليمية فريدة تجمع بين المعرفة والمتعة مع مجموعة متنوعة من الأنشطة التفاعلية.',
+      title: AppKeys.onboardingTitle2.tr(),
+      description: AppKeys.onboardingDesc2.tr(),
     ),
     OnboardingModel(
       image: AppAssets.onboarding3,
-      title: 'نمو روحي وتطور دائم',
-      description: 'نحن هنا لنرافقك في رحلتك الروحية ونساعدك على تعميق فهمك لدينك الجميل بطريقة سهلة وميسرة.',
+      title: AppKeys.onboardingTitle3.tr(),
+      description: AppKeys.onboardingDesc3.tr(),
     ),
   ];
 
@@ -101,7 +103,7 @@ class _OnboardingBodyState extends State<OnboardingBody> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            isLastPage ? 'ابدأ الآن' : 'التالي',
+                            isLastPage ? AppKeys.startNow.tr() : AppKeys.next.tr(),
                             style: GoogleFonts.cairo(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -122,7 +124,7 @@ class _OnboardingBodyState extends State<OnboardingBody> {
                       TextButton(
                         onPressed: () => _finishOnboarding(context),
                         child: Text(
-                          'تخطي العرض',
+                          AppKeys.skip.tr(),
                           style: GoogleFonts.cairo(
                             color: AppColors.mutedGreen,
                             fontSize: 16,

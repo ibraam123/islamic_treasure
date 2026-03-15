@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:islamic_treasure/core/config/app_colors.dart';
 import 'package:islamic_treasure/core/config/app_routes.dart';
 
+import '../../../../core/services/cache_service.dart';
+
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
 
@@ -21,13 +23,13 @@ class _SplashViewState extends State<SplashView> {
     await Future.delayed(const Duration(seconds: 2));
     if (!mounted) return;
 
-    //bool onboardingSeen = CacheService.getData(key: 'onboarding_seen') ?? false;
+    bool onboardingSeen  = await CacheService.getBool(key: 'onboarding_seen');
 
-    /*if (onboardingSeen) {
+    if (onboardingSeen) {
       context.go(AppRoutes.kSignInView);
     } else {
-    }*/
-    context.go(AppRoutes.kOnboardingView);
+      context.go(AppRoutes.kOnboardingView);
+    }
 
   }
 

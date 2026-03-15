@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:islamic_treasure/core/config/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:islamic_treasure/core/constants/app_keys.dart';
 import 'package:islamic_treasure/features/auth/presentation/manager/login_cubit.dart';
 
 class UserTypeSwitch extends StatelessWidget {
@@ -39,7 +41,7 @@ class UserTypeSwitch extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
             child: Text(
-              'ولي أمر',
+              AppKeys.parent.tr(),
               textAlign: TextAlign.center,
               style: GoogleFonts.cairo(
                 fontSize: 16,
@@ -55,7 +57,7 @@ class UserTypeSwitch extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
             child: Text(
-              'طالب',
+              AppKeys.student.tr(),
               textAlign: TextAlign.center,
               style: GoogleFonts.cairo(
                 fontSize: 16,
