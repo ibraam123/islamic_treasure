@@ -4,16 +4,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:islamic_treasure/core/config/app_routes.dart';
 import 'package:islamic_treasure/core/services/cache_service.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   await CacheService.init();
   runApp(
     EasyLocalization(
-      supportedLocales: const [Locale('en'), Locale('ar')],
+      supportedLocales: const [
+        Locale('en'),
+        Locale('ar')
+      ],
       path: 'assets/translations',
-      fallbackLocale: const Locale('en'),
-      startLocale: const Locale('ar'),
+      fallbackLocale: const Locale('ar'),
+      startLocale: const Locale('en'),
       child: const MyApp(),
     ),
   );

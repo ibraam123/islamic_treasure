@@ -2,9 +2,9 @@ import 'package:go_router/go_router.dart';
 import 'package:islamic_treasure/features/auth/presentation/views/sign_in_view.dart';
 import 'package:islamic_treasure/features/onboarding/presentation/views/onboarding_view.dart';
 import 'package:islamic_treasure/features/splash/presentation/views/splash_view.dart';
+import 'package:islamic_treasure/features/main/presentation/views/main_view.dart';
 
 class AppRoutes {
-
   static const String kSplashView = '/';
   static const String kSignUpView = '/signUp';
   static const String kSignInView = '/signIn';
@@ -29,7 +29,10 @@ class AppRoutes {
         path: kSignInView,
         builder: (context, state) => const SignInView(),
       ),
+      GoRoute(
+        path: kMain,
+        builder: (context, state) => const MainView(),
+      ),
     ],
   );
 }
-

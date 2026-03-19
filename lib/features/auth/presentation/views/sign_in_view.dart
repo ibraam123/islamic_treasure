@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:islamic_treasure/core/config/app_assets.dart';
 import 'package:islamic_treasure/core/config/app_colors.dart';
 import 'package:islamic_treasure/core/config/app_routes.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:islamic_treasure/core/constants/app_keys.dart';
 import 'package:islamic_treasure/features/auth/presentation/manager/login_cubit.dart';
+import 'package:islamic_treasure/features/auth/domain/entities/login_params.dart';
 import 'package:islamic_treasure/features/auth/presentation/widgets/auth_button.dart';
+
 import 'package:islamic_treasure/features/auth/presentation/widgets/auth_text_field.dart';
 import 'package:islamic_treasure/features/auth/presentation/widgets/user_type_switch.dart';
 
@@ -59,7 +60,7 @@ class _SignInViewState extends State<SignInView> {
                             color: AppColors.lightBackground,
                             shape: BoxShape.circle,
                           ),
-                          child: Image.asset(AppAssets.appLogo),
+                          child: Icon(Icons.person, size: 60, color: AppColors.primaryBlue),
                         ),
                         const SizedBox(height: 24),
                         Text(
@@ -91,7 +92,7 @@ class _SignInViewState extends State<SignInView> {
                         BlocBuilder<LoginCubit, LoginState>(
                           buildWhen: (previous, current) => current is LoginUserTypeChanged,
                           builder: (context, state) {
-                            return UserTypeSwitch(
+                            return UserTypeSwitch( 
                               selectedType: context.read<LoginCubit>().selectedType,
                               onTypeChanged: (type) {
                                 context.read<LoginCubit>().updateType(type);
@@ -139,22 +140,7 @@ class _SignInViewState extends State<SignInView> {
                             );
                           },
                         ),
-                        const SizedBox(height: 12),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: TextButton(
-                            onPressed: () {},
-                            child: Text(
-                              'نسيت كلمة المرور؟',
-                              style: GoogleFonts.cairo(
-                                color: AppColors.primaryBlue,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 13,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const Spacer(),
+                        const Spacer(), 
                         BlocConsumer<LoginCubit, LoginState>(
                           listener: (context, state) {
                             if (state is LoginSuccess) {
@@ -173,9 +159,12 @@ class _SignInViewState extends State<SignInView> {
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
                                   context.read<LoginCubit>().login(
-                                        email: _emailController.text,
-                                        password: _passwordController.text,
-                                      );
+                                        params: LoginParams(
+                                          email: _emailController.text,
+                                          password: _passwordController.text,
+                                        ),
+                                      ); 
+                                      GoRouter.of(context).go(AppRoutes.kMain);
                                 }
                               },
                             );

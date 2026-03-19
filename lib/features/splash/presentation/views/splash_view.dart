@@ -26,7 +26,7 @@ class _SplashViewState extends State<SplashView> {
     bool onboardingSeen  = await CacheService.getBool(key: 'onboarding_seen');
 
     if (onboardingSeen) {
-      context.go(AppRoutes.kSignInView);
+      context.go(AppRoutes.kMain);
     } else {
       context.go(AppRoutes.kOnboardingView);
     }

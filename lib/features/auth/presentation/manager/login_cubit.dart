@@ -1,8 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:islamic_treasure/features/auth/domain/entities/login_params.dart';
+
 
 part 'login_state.dart';
 
-enum UserType { student, parent, teacher }
+enum UserType { student, parent }
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginInitial());
@@ -20,9 +22,9 @@ class LoginCubit extends Cubit<LoginState> {
     emit(LoginPasswordVisibilityChanged(isPasswordHidden));
   }
 
-  Future<void> login({required String email, required String password}) async {
+  Future<void> login({required LoginParams params}) async {
     emit(LoginLoading());
-    // Simulate API call
+    // Simulate API call  
     await Future.delayed(const Duration(seconds: 1));
     emit(LoginSuccess());
   }
